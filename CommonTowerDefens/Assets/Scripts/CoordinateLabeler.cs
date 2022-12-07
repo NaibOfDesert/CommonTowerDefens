@@ -20,6 +20,7 @@ public class CoordinateLabeler : MonoBehaviour
         if (!Application.isPlaying)
         {
             DisplayCoordinates();
+            UpdateObjectName();
         }    
     }
     void DisplayCoordinates()
@@ -29,5 +30,8 @@ public class CoordinateLabeler : MonoBehaviour
 
         label.text = $"{coordinates.x},{coordinates.y}"; 
     }
-
+    void UpdateObjectName()
+    {
+        transform.parent.name = coordinates.ToString();
+    }
 }
