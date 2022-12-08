@@ -6,6 +6,10 @@ public class Waypoint : MonoBehaviour
 {
     [SerializeField] GameObject towerPrefab; 
     [SerializeField] bool isPlaceable; 
+    public bool IsPlaceabe { get {return isPlaceable;}}
+    
+
+
     void OnMouseDown()
     {
         if (isPlaceable)
