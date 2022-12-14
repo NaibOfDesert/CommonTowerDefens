@@ -32,6 +32,16 @@ public class GridManager : MonoBehaviour
         }
     }
 
+    public void ResetNodes()
+    {
+        foreach(KeyValuePair<Vector2Int, Node> g in grid)
+        {
+            g.Value.connectedTo = null;
+            g.Value.isExplored = false;
+            g.Value.isPath = false;
+        }
+    }
+
     public Vector2Int GetCoordinatesFromPosition(Vector3 position)
     {
         Vector2Int coordinates = new Vector2Int(); 
