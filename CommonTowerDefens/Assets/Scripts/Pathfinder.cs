@@ -18,7 +18,7 @@ public class Pathfinder : MonoBehaviour
 
     Vector2Int[] directions = { Vector2Int.right, Vector2Int.left, Vector2Int.up, Vector2Int.down };
     GridManager gridManager;
-    Dictionary<Vector2Int, Node> grid = new Dictionary<Vector2Int, Node>(); 
+    Dictionary<Vector2Int, Node> grid = new Dictionary<Vector2Int, Node>();
 
     void Awake()
     {
@@ -38,8 +38,14 @@ public class Pathfinder : MonoBehaviour
 
     public List<Node> GetNewPath()
     {
+        return GetNewPath(StartCoordinates);
+    }
+
+    public List<Node> GetNewPath(Vector2Int coordinates)
+    {
+        
         gridManager.ResetNodes();
-        BreadthFirstSearch();
+        BreadthFirstSearch(coordinates);
         return BuildPath();
     }
     void ExploreNeighbors()
@@ -67,7 +73,7 @@ public class Pathfinder : MonoBehaviour
         }
     }
 
-    void BreadthFirstSearch()
+    void BreadthFirstSearch(Vector2Int coordinates)
     {
         startNode.isWalkable = true;
         destinationNode.isWalkable = true;
@@ -77,10 +83,10 @@ public class Pathfinder : MonoBehaviour
 
         bool isRunning = true;
 
-        frontier.Enqueue(startNode);
-        reached.Add(startCoordinates, startNode); 
+        frontier.Enqueue(grid[coordinates]);
+        reached.Add(coordinates, grid[coordinates]); 
 
-        while(frontier.Count > 0 && isRunning == true)
+        while(frontier.Count > 0 && isRunning)
         {
             currentSearchNode = frontier.Dequeue();
             currentSearchNode.isExplored = true;
@@ -102,6 +108,7 @@ public class Pathfinder : MonoBehaviour
         {
             currentNode = currentNode.connectedTo;
             path.Add(currentNode);
+            
             currentNode.isPath = true;
 
         }
@@ -130,6 +137,10 @@ public class Pathfinder : MonoBehaviour
     }
     public void NotifyReceivers()
     {
-        BroadcastMessage("RecalculatePath", SendMessageOptions.DontRequireReceiver);
+        // to fix, cant call methos RecalculatePath
+        BroadcastMessage("RecalculatePath", false, SendMessageOptions.DontRequireReceiver); // call "RecalculatePath" in any MonoBehaviour
+
+        Debug.Log("Broadcast");
+        
     }
 }

@@ -19948,6 +19948,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1513339930277853846, guid: 70616f96c51bcc841852dceb43f03a13, type: 3}
+      propertyPath: spawnTimer
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 1513339930277853848, guid: 70616f96c51bcc841852dceb43f03a13, type: 3}
       propertyPath: m_Name
       value: ObjectPool
@@ -20085,7 +20089,7 @@ PrefabInstance:
       objectReference: {fileID: 1981161604}
     - target: {fileID: 5848772895627977760, guid: 78a84938071dcb547876248977c2263c, type: 3}
       propertyPath: startingBalance
-      value: 150
+      value: 5000
       objectReference: {fileID: 0}
     - target: {fileID: 5848772895627977761, guid: 78a84938071dcb547876248977c2263c, type: 3}
       propertyPath: m_RootOrder
